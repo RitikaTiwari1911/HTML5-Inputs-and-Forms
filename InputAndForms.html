@@ -14,20 +14,34 @@
                 HTML 5 Form Input Fields
             </h1>
         </header>
-        <div>
+        <div>       <!--Block for name-->
             <label for="text">Text input type for Name</label>
-            <input type="text" id="text" name="text">
+            <input type="text" id="text" name="text" required>
             <error-output class="text-error" for="text"></error-output>
+        </div>
+        <div>       <!--Block for email id-->
+            <label for="email">Enter you Email ID</label>
+            <input type="email" id="email" name="email" required>
+            <error-output class="email-error" for="email"></error-output>
         </div>
     </form>
     <script>
-        const text = document.querySelector('#text');
+        const text = document.querySelector('#text');       /*JS code for the validation of name*/
         const textError = document.querySelector('.text-error');
         text.addEventListener('input',function(){
-            let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+            let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');      /*Regex for name*/
             if(nameRegex.test(text.value))
                 textError.textContent = "";
-            else textError.textContent = "Name is incorrect"
+            else textError.textContent = "Name is incorrect";
+        });
+
+        const email = document.querySelector('#email');     /*JS code for email ID*/
+        const emailError = document.querySelector('.email-error');
+        email.addEventListener('input',function(){
+            let emailRegex = RegExp(/'^[a-zA-Z0-9.!#$%&'`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$'/);     /*Regex for email id*/
+            if(emailRegex.test(email.value))
+                emailError.emailContent = "";
+            else emailError.emailContent = "Invalid Email";
         });
     </script>    
 </body>
