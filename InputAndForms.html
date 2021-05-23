@@ -34,10 +34,42 @@
             <error-output class="pwd-error" for="pwd"></error-output>
         </div>
 
+        <div>       <!--Block for url-->
+            <label for="url">url input type:</label>        
+            <input type="url" id="url" name="url">
+        </div>
+
+        <div>       <!---Block for number-->
+            <label for="number">number input type:</label>     
+            <input type="number" id="number" name="number">
+        </div>
+
         <div>       <!--telephone no-->
             <label for="tel">Tel input type:</label>        
             <input type="tel" id="tel" name="tel">
             <error-output class="tel-error" for="tel"></error-output>
+        </div>
+
+        <div>
+            <label for="search">search input type:</label>      <!--search-->
+            <input type="search" id="search" name="search">
+        </div>
+
+        <div class="nativeDateTimePicker">          <!--date and time-->
+            <label for="party">Choose a date and time:</label>
+            <input type="datetime-local" id="party" name="bday">
+            <span class="validity"></span>
+        </div>
+
+        <div>       <!--salary slider-->
+            <label for="salary">Choose your salary: </label>
+            <input type="range" name="salary" id="salary" min="300000"
+                    max="500000" step="100" value="400000">
+            <output class="salary-output" for="salary">400000</output>
+        </div>
+
+        <div>
+            <button>Submit</button>
         </div>
     </form>
     
@@ -78,6 +110,13 @@
             if(telRegex.test(tel.value))
                 telError.textContent = "";
             else telError.textContent = "Invalid Phone number";
+        });
+
+        const salary = document.querySelector('#salary');       /*JS code for slider*/
+        const output = document.querySelector('.salary-output');
+        output.textContent = salary.value;
+        salary.addEventListener('input', function(){
+            output.textContent = salary.value;
         });
     </script>    
 </body>
