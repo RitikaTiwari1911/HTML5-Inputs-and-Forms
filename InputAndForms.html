@@ -1,3 +1,5 @@
+<!-------------------------------------------------------------------------------HTML---------------------------------------------------------------------------------------->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,12 +28,21 @@
             <error-output class="email-error" for="email"></error-output>
         </div>
 
+        <div>       <!--Block for password-->
+            <label for="pwd">password input type:</label>      
+            <input type="password" id="pwd" name="pwd">
+            <error-output class="pwd-error" for="pwd"></error-output>
+        </div>
+
         <div>       <!--telephone no-->
             <label for="tel">Tel input type:</label>        
             <input type="tel" id="tel" name="tel">
             <error-output class="tel-error" for="tel"></error-output>
         </div>
     </form>
+    
+    
+ <!----------------------------------------------------------------------------JAVA SCRIPT-------------------------------------------------------------------------------------->   
     <script>
         const text = document.querySelector('#text');       /*JS code for the validation of name*/
         const textError = document.querySelector('.text-error');
@@ -42,10 +53,19 @@
             else textError.textContent = "Name is incorrect";
         });
 
+        const pwd = document.querySelector('#pwd');     /*JS code for password*/
+        const pwdError = document.querySelector('.pwd-error');
+        pwd.addEventListener('input',function(){
+            let pwdRegex = RegExp("[a-zA-Z0-9@#$%&!]{8,}");     /*Regex for password*/
+            if(pwdRegex.test(pwd.value))
+                pwdError.textContent = "";
+            else pwdError.textContent = "Invalid Password";
+        });
+
         const email = document.querySelector('#email');     /*JS code for email ID*/
         const emailError = document.querySelector('.email-error');
         email.addEventListener('input',function(){
-            let emailRegex = RegExp(/'^[a-zA-Z0-9.!#$%&'`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$'/);     /*Regex for email id*/
+            let emailRegex = RegExp("^[a-zA-Z0-9.!#$%&'`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");     /*Regex for email id*/
             if(emailRegex.test(email.value))
                 emailError.textContent = "";
             else emailError.textContent = "Invalid Email";
@@ -54,7 +74,7 @@
         const tel = document.querySelector('#tel');     /*JS code for telephone number*/
         const telError = document.querySelector('.tel-error');
         tel.addEventListener('input',function(){
-            let telRegex = RegExp(/'^\(?([0-9]{2})\)?[ ]?([0-9]{10})$'/);     /*Regex for telephone number*/
+            let telRegex = RegExp(/"^\(?([0-9]{2})\)?[-. ]?([0-9]{10})$"/);     /*Regex for telephone number*/
             if(telRegex.test(tel.value))
                 telError.textContent = "";
             else telError.textContent = "Invalid Phone number";
